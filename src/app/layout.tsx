@@ -1,25 +1,33 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/common/header";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { defaultQueryFn } from "@/api/default-query-fn";
 
 const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Stock Search App",
-  description: "Demo for an application of Stock Search",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { queryFn: defaultQueryFn } },
+  });
+
   return (
     <html lang="en">
-      <body className={`${roboto.className} antialiased`}>{children}</body>
+      <body className={`${roboto.className} antialiased`}>
+        <QueryClientProvider client={queryClient}>
+          <Header />
+          {children}
+        </QueryClientProvider>
+      </body>
     </html>
   );
 }
