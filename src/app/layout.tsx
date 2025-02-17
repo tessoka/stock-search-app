@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/common/header";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { defaultQueryFn } from "@/api/default-query-fn";
+import { ApiCodeProvider } from "@/hooks/use-api-code";
 
 const roboto = Roboto({
   weight: "400",
@@ -23,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.className} antialiased`}>
-        <QueryClientProvider client={queryClient}>
-          <Header />
-          {children}
-        </QueryClientProvider>
+        <ApiCodeProvider>
+          <QueryClientProvider client={queryClient}>
+            <Header />
+            {children}
+          </QueryClientProvider>
+        </ApiCodeProvider>
       </body>
     </html>
   );

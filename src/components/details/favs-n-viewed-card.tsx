@@ -9,7 +9,7 @@ import Link from "next/link";
 const FavsAndViewedCard = () => {
   const { favourites, recentlyViewed } = useStocksStore();
   return (
-    <Card className="h-[300px] overflow-clip flex flex-col lg:flex-row bg-slate-100">
+    <Card className="md:h-[300px] overflow-clip flex flex-col lg:flex-row bg-slate-100">
       <CardDescription className="flex-1 p-4 space-y-2">
         <p className="text-lg tracking-wide font-bold">Favourite Stocks:</p>
         <div className="flex gap-1 flex-wrap">
