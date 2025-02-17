@@ -1,35 +1,30 @@
-"use client";
-
+import { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/common/header";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { defaultQueryFn } from "@/api/default-query-fn";
-import { ApiCodeProvider } from "@/hooks/use-api-code";
+import Providers from "@/components/common/providers";
 
 const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+  title: "Orbit Stockz Screener",
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const queryClient = new QueryClient({
-    defaultOptions: { queries: { queryFn: defaultQueryFn } },
-  });
-
+}) {
   return (
     <html lang="en">
       <body className={`${roboto.className} antialiased`}>
-        <ApiCodeProvider>
-          <QueryClientProvider client={queryClient}>
-            <Header />
-            {children}
-          </QueryClientProvider>
-        </ApiCodeProvider>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

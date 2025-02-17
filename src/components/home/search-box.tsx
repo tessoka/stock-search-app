@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 import { useDebounceValue } from "usehooks-ts";
 import { useSearch } from "@/hooks/use-search";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const SearchBox = () => {
   const searchParams = useSearchParams();
@@ -20,6 +20,8 @@ const SearchBox = () => {
   const [debounceValue, setDebounceValue] = useDebounceValue(inputValue, 1000);
 
   const { data, isLoading } = useSearch(debounceValue);
+
+  const bestMatches = useMemo(() => data?.bestMatches, [data?.bestMatches]);
 
   const handleInputChange = (value: string) => {
     setInputValue(value);
@@ -37,7 +39,7 @@ const SearchBox = () => {
   }, [pn]);
 
   return (
-    <Popover open={!!data?.bestMatches.length && !!inputValue}>
+    <Popover open={!!bestMatches?.length && !!inputValue}>
       <PopoverAnchor className="w-1/3 min-w-60">
         <div className="flex gap-2">
           <Input
@@ -62,8 +64,8 @@ const SearchBox = () => {
         align="start"
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
-        {!!data?.bestMatches.length &&
-          data.bestMatches.map((stock) => (
+        {!!bestMatches?.length &&
+          bestMatches.map((stock) => (
             <Link
               key={stock["1. symbol"]}
               href={`/stocks/${stock["1. symbol"].toLowerCase()}`}

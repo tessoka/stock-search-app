@@ -27,7 +27,7 @@ const GlobalQuoteCard = () => {
   const change = parseFloat(data["Global Quote"]["09. change"]);
 
   return (
-    <Card className="h-[400px] overflow-clip flex flex-col">
+    <Card className="h-full overflow-clip flex flex-col">
       <CardHeader
         className={cn(
           change > 0 && "bg-emerald-300",
@@ -60,7 +60,7 @@ const GlobalQuoteCard = () => {
         </p>
         <p>{data?.["Global Quote"]["07. latest trading day"]}</p>
       </CardHeader>
-      <CardDescription className="bg-slate-100 flex-1 grid place-content-center">
+      <CardDescription className="bg-slate-100 flex-1 grid place-content-center min-h-40">
         <p className="text-3xl">{data["Global Quote"]["01. symbol"]}</p>
       </CardDescription>
     </Card>
