@@ -1,3 +1,4 @@
+import ChartCard from "@/components/details/chart-card";
 import GlobalQuoteCard from "@/components/details/global-quote-card";
 import { Card } from "@/components/ui/card";
 import React from "react";
@@ -10,7 +11,7 @@ const StockDetailsPage = () => {
           <GlobalQuoteCard />
         </div>
         <div className="h-[400px] md:col-span-4">
-          <Card className="h-full grid place-content-center">Placeholder</Card>
+          <ChartCard />
         </div>
         <div className="h-[300px] md:col-span-2 ">
           <Card className="h-full grid place-content-center">Placeholder</Card>

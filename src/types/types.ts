@@ -2,7 +2,7 @@ export type ApiInformaton = {
   Information?: string;
 };
 
-export type StockSearchResult = {
+export type StockSearchResultItem = {
   "1. symbol": string;
   "2. name": string;
   "3. type": string;
@@ -12,6 +12,10 @@ export type StockSearchResult = {
   "7. timezone": string;
   "8. currency": string;
   "9. matchScore": string;
+};
+
+export type StockSearchResult = {
+  bestMatches: StockSearchResultItem[];
 } & ApiInformaton;
 
 export type StockGlobalQuote = {
@@ -29,7 +33,7 @@ export type StockGlobalQuote = {
   };
 } & ApiInformaton;
 
-export type StockTimeSeriesDaily = {
+export type StockTimeSeries = {
   "Meta Data": {
     "1. Information": string;
     "2. Symbol": string;
@@ -37,13 +41,29 @@ export type StockTimeSeriesDaily = {
     "4. Output Size": string;
     "5. Time Zone": string;
   };
-  "Time Series (Daily)": {
-    [key: string]: {
-      "1. open": string;
-      "2. high": string;
-      "3. low": string;
-      "4. close": string;
-      "5. volume": string;
-    };
+  "Time Series (Daily)"?: {
+    [key: string]: TimeSeriesData;
+  };
+  "Time Series (5min)"?: {
+    [key: string]: TimeSeriesData;
   };
 } & ApiInformaton;
+
+type TimeSeriesData = {
+  "1. open": string;
+  "2. high": string;
+  "3. low": string;
+  "4. close": string;
+  "5. volume": string;
+};
+
+export type FormattedStockTimeSerie = {
+  date: string;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
+};
+
+export type ChartPeriod = "1D" | "5D" | "30D" | "100D";
