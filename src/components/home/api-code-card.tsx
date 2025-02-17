@@ -5,6 +5,8 @@ import { Card, CardDescription } from "../ui/card";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useApiCode } from "@/hooks/use-api-code";
+import { Info } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const ApiCodeCard = () => {
   const { apiCode, setApiCode, resetApiCode } = useApiCode();
@@ -16,7 +18,7 @@ const ApiCodeCard = () => {
   };
 
   return (
-    <Card className="bg-slate-100">
+    <Card className="bg-slate-100 relative">
       <CardDescription className="p-4 flex flex-col gap-10">
         <div className="space-y-2">
           <p className="text-lg tracking-wide font-bold">
@@ -47,6 +49,18 @@ const ApiCodeCard = () => {
           </div>
         </div>
       </CardDescription>
+      <Tooltip>
+        <TooltipTrigger className="absolute top-2 right-2">
+          <Info className="text-slate-600" size={16} />
+        </TooltipTrigger>
+        <TooltipContent className="bg-slate-700 space-y-1">
+          <p className="flex gap-1">
+            <span>You may try to use my key:</span>
+            <span>{process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY}</span>
+          </p>
+          <p>It may over the daily free API call limit... :\</p>
+        </TooltipContent>
+      </Tooltip>
     </Card>
   );
 };
