@@ -61,7 +61,7 @@ const ApiCodeCard = () => {
         <TooltipTrigger className="absolute top-2 right-2">
           <Info className="text-slate-600" size={16} />
         </TooltipTrigger>
-        <TooltipContent className="bg-slate-700 space-y-1">
+        <TooltipContent className="bg-slate-800 space-y-1">
           <p className="flex gap-2">
             <span>You may try to use my key:</span>
             {process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY && (
@@ -71,9 +71,7 @@ const ApiCodeCard = () => {
                   size={12}
                   className="cursor-pointer"
                   onClick={() =>
-                    navigator.clipboard.writeText(
-                      process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY ?? ""
-                    )
+                    setInputValue(process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY!)
                   }
                 />
               </>
