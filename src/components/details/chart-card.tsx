@@ -87,7 +87,9 @@ const ChartCard = () => {
       ? formattedData
       : formattedData.slice(0, chartPeriods[selectedPeriod]);
 
-  const change = parseFloat(globalQuote?.["Global Quote"]["09. change"] ?? "0");
+  const change = parseFloat(
+    globalQuote?.["Global Quote"]?.["09. change"] ?? "0"
+  );
 
   const color =
     change > 0 ? "oklch(0.765 0.177 163.223)" : "oklch(0.712 0.194 13.428)";

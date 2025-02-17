@@ -19,10 +19,9 @@ const GlobalQuoteCard = () => {
   const { data, isLoading } = useStockGlobalQuote(symbol);
 
   if (isLoading) return <LoadingCard />;
-
   if (!data) return null; // Empty state
-
   if (data.Information) return <InfoCard text={data.Information} />;
+  if (!data["Global Quote"]) return null; // Empty state
 
   const change = parseFloat(data["Global Quote"]["09. change"]);
 

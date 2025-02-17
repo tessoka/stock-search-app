@@ -19,7 +19,7 @@ export type StockSearchResult = {
 } & ApiInformaton;
 
 export type StockGlobalQuote = {
-  "Global Quote": {
+  "Global Quote"?: {
     "01. symbol": string;
     "02. open": string;
     "03. high": string;
