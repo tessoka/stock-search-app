@@ -24,7 +24,7 @@ const GlobalQuoteCard = () => {
 
   if (data.Information) return <InfoCard text={data.Information} />;
 
-  const change = parseFloat(data["Global Quote"]["09. change"]) > 0 ? 1 : -1;
+  const change = parseFloat(data["Global Quote"]["09. change"]);
 
   return (
     <Card className="h-[400px] overflow-clip flex flex-col">
@@ -37,7 +37,9 @@ const GlobalQuoteCard = () => {
       >
         <p className="text-3xl flex items-center gap-1 font-bold">
           <DollarSign size={32} />
-          <span>{data?.["Global Quote"]["05. price"]}</span>
+          <span>
+            {parseFloat(data?.["Global Quote"]["05. price"]).toFixed(2)}
+          </span>
         </p>
         <p className="flex items-center gap-2">
           <span>
@@ -46,11 +48,14 @@ const GlobalQuoteCard = () => {
           </span>
           <span>
             {change > 0 && "+"}
-            {data?.["Global Quote"]["09. change"]}
+            {parseFloat(data?.["Global Quote"]["09. change"]).toFixed(2)}
           </span>
           <span>
             {change > 0 && "+"}
-            {data?.["Global Quote"]["10. change percent"]}
+            {parseFloat(data?.["Global Quote"]["10. change percent"]).toFixed(
+              2
+            )}
+            %
           </span>
         </p>
         <p>{data?.["Global Quote"]["07. latest trading day"]}</p>

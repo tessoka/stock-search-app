@@ -37,7 +37,7 @@ const SearchBox = () => {
   }, [pn]);
 
   return (
-    <Popover open={!!data?.length && !!inputValue}>
+    <Popover open={!!data?.bestMatches.length && !!inputValue}>
       <PopoverAnchor className="w-1/4 min-w-60">
         <div className="flex gap-2">
           <Input
@@ -62,8 +62,8 @@ const SearchBox = () => {
         align="start"
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
-        {!!data?.length &&
-          data.map((stock) => (
+        {!!data?.bestMatches.length &&
+          data.bestMatches.map((stock) => (
             <Link
               key={stock["1. symbol"]}
               href={`/stocks/${stock["1. symbol"].toLowerCase()}`}
