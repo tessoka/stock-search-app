@@ -5,16 +5,24 @@ import { Card, CardDescription } from "../ui/card";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useApiCode } from "@/hooks/use-api-code";
-import { Info } from "lucide-react";
+import { Copy, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ApiCodeCard = () => {
   const { apiCode, setApiCode, resetApiCode } = useApiCode();
   const [inputValue, setInputValue] = useState("");
+  const qc = useQueryClient();
 
   const handleApplyCode = () => {
     setApiCode(inputValue);
     setInputValue("");
+    qc.invalidateQueries();
+  };
+
+  const handleResetCode = () => {
+    resetApiCode();
+    qc.invalidateQueries();
   };
 
   return (
@@ -45,7 +53,7 @@ const ApiCodeCard = () => {
             <span className="text-rose-500">{apiCode} </span>
           </p>
           <div className="flex gap-2">
-            <Button onClick={resetApiCode}>Reset</Button>
+            <Button onClick={handleResetCode}>Reset</Button>
           </div>
         </div>
       </CardDescription>
@@ -54,9 +62,22 @@ const ApiCodeCard = () => {
           <Info className="text-slate-600" size={16} />
         </TooltipTrigger>
         <TooltipContent className="bg-slate-700 space-y-1">
-          <p className="flex gap-1">
+          <p className="flex gap-2">
             <span>You may try to use my key:</span>
-            <span>{process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY}</span>
+            {process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY && (
+              <>
+                <span>{process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY}</span>
+                <Copy
+                  size={12}
+                  className="cursor-pointer"
+                  onClick={() =>
+                    navigator.clipboard.writeText(
+                      process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY ?? ""
+                    )
+                  }
+                />
+              </>
+            )}
           </p>
           <p>It may over the daily free API call limit... :\</p>
         </TooltipContent>
