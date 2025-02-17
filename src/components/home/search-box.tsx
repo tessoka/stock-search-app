@@ -21,7 +21,8 @@ const SearchBox = () => {
 
   const { data, isLoading } = useSearch(debounceValue);
 
-  const bestMatches = useMemo(() => data?.bestMatches, [data?.bestMatches]);
+  const bestMatches = useMemo(() => data?.bestMatches, [data]);
+  const infoError = useMemo(() => data?.Information, [data]);
 
   const handleInputChange = (value: string) => {
     setInputValue(value);
@@ -39,7 +40,7 @@ const SearchBox = () => {
   }, [pn]);
 
   return (
-    <Popover open={!!bestMatches?.length && !!inputValue}>
+    <Popover open={(!!bestMatches?.length || !!infoError) && !!inputValue}>
       <PopoverAnchor className="w-full md:w-1/3 min-w-60">
         <div className="flex gap-2">
           <Input
@@ -74,6 +75,7 @@ const SearchBox = () => {
               {stock["2. name"]}
             </Link>
           ))}
+        {!!infoError && <p className="text-xs">{infoError}</p>}
       </PopoverContent>
     </Popover>
   );
