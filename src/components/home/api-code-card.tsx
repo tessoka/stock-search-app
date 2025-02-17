@@ -12,6 +12,7 @@ import { useQueryClient } from "@tanstack/react-query";
 const ApiCodeCard = () => {
   const { apiCode, setApiCode, resetApiCode } = useApiCode();
   const [inputValue, setInputValue] = useState("");
+  const [openTooltip, setOpenTooltip] = useState(false);
   const qc = useQueryClient();
 
   const handleApplyCode = () => {
@@ -57,11 +58,17 @@ const ApiCodeCard = () => {
           </div>
         </div>
       </CardDescription>
-      <Tooltip>
-        <TooltipTrigger className="absolute top-2 right-2">
+      <Tooltip open={openTooltip} delayDuration={0}>
+        <TooltipTrigger
+          className="absolute top-2 right-2"
+          onClick={() => setOpenTooltip((p) => !p)}
+        >
           <Info className="text-slate-600" size={16} />
         </TooltipTrigger>
-        <TooltipContent className="bg-slate-800 space-y-1">
+        <TooltipContent
+          className="bg-slate-800 space-y-1"
+          onPointerDownOutside={() => setOpenTooltip(false)}
+        >
           <p className="flex gap-2">
             <span>You may try to use my key:</span>
             {process.env.NEXT_PUBLIC_ALPHAVANTAGE_API_KEY && (

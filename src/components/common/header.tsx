@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 bg-slate-100 py-2 px-5 h-20 flex items-center justify-between gap-2">
+    <header className="sticky top-0 bg-slate-100 py-2 px-5 h-20 flex items-center justify-between gap-2 shadow-lg border">
       <Link href="/" className="group flex items-center gap-3 text-slate-500">
         <Orbit size={32} className="group-hover:animate-spin" />
         <h1 className="text-xl font-semibold hidden md:block">
