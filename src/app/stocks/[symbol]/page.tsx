@@ -5,7 +5,7 @@ import React from "react";
 
 const StockDetailsPage = () => {
   return (
-    <main className="max-w-screen-xl mx-auto py-20">
+    <main className="max-w-screen-xl mx-auto py-20 px-5">
       <div className="grid md:grid-rows-2 grid-cols-1 md:grid-cols-5 gap-4">
         <div className="h-[400px]">
           <GlobalQuoteCard />

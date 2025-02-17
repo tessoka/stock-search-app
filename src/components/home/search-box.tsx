@@ -38,7 +38,7 @@ const SearchBox = () => {
 
   return (
     <Popover open={!!data?.bestMatches.length && !!inputValue}>
-      <PopoverAnchor className="w-1/4 min-w-60">
+      <PopoverAnchor className="w-1/3 min-w-60">
         <div className="flex gap-2">
           <Input
             value={inputValue}

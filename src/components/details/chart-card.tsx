@@ -8,6 +8,7 @@ import LoadingCard from "../common/loading-card";
 import {
   Area,
   AreaChart,
+  CartesianGrid,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -120,26 +121,34 @@ const ChartCard = () => {
         })}
       </CardHeader>
 
-      <CardFooter className="flex-1">
+      <CardFooter className="flex-1 p-2">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={filteredData}>
-            <XAxis dataKey={"date"} reversed />
+            <XAxis
+              dataKey={"date"}
+              reversed
+              tickFormatter={(v) =>
+                selectedPeriod === "1D" ? v.split(" ")[1] : v
+              }
+            />
             <YAxis
               orientation={"right"}
               type="number"
               domain={[
-                (dataMin: number) => dataMin * 0.9,
-                (dataMax: number) => dataMax * 1.1,
+                (dataMin: number) => dataMin * 0.95,
+                (dataMax: number) => dataMax * 1.05,
               ]}
+              allowDecimals={false}
+              tickCount={3}
+              scale={"linear"}
             />
             <Area
-              type="linear"
               dataKey="close"
               stroke={color}
               fill={color}
               fillOpacity={0.3}
             />
-
+            <CartesianGrid strokeDasharray="4 4" stroke="#e2e8f0" />
             <Tooltip content={(v) => <CustomTooltip {...v} />} />
           </AreaChart>
         </ResponsiveContainer>
