@@ -22,21 +22,25 @@ const ApiCodeCard = () => {
           <p className="text-lg tracking-wide font-bold">
             Alphavantage API Code to use:
           </p>
-          <div className="flex gap-2">
+          <form className="flex gap-2">
             <Input
               className="bg-white"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
             />
-            <Button onClick={handleApplyCode} disabled={!inputValue}>
+            <Button
+              onClick={handleApplyCode}
+              disabled={!inputValue}
+              type={"submit"}
+            >
               Apply
             </Button>
-          </div>
+          </form>
         </div>
         <div>
           <p className="text-lg tracking-wide font-bold space-x-2">
             <span>Currently used API Code:</span>
-            <span className="text-rose-600">{apiCode} </span>
+            <span className="text-rose-500">{apiCode} </span>
           </p>
           <div className="flex gap-2">
             <Button onClick={resetApiCode}>Reset</Button>
