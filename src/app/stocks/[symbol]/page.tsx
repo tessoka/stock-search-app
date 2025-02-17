@@ -1,4 +1,5 @@
 import ChartCard from "@/components/details/chart-card";
+import FavsAndViewedCard from "@/components/details/favs-n-viewed-card";
 import GlobalQuoteCard from "@/components/details/global-quote-card";
 import { Card } from "@/components/ui/card";
 import React from "react";
@@ -14,13 +15,17 @@ const StockDetailsPage = () => {
           <ChartCard />
         </div>
         <div className="h-[300px] md:col-span-2 ">
-          <Card className="h-full grid place-content-center">Placeholder</Card>
+          <FavsAndViewedCard />
         </div>
         <div className="h-[300px]">
-          <Card className="h-full grid place-content-center">Placeholder</Card>
+          <Card className="h-full grid place-content-center bg-slate-100">
+            Placeholder
+          </Card>
         </div>
         <div className="h-[300px] md:col-span-2">
-          <Card className="h-full grid place-content-center">Placeholder</Card>
+          <Card className="h-full grid place-content-center bg-slate-100">
+            Placeholder
+          </Card>
         </div>
       </div>
     </main>
